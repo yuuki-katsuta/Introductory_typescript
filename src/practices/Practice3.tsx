@@ -10,7 +10,7 @@ export const Practice3 = () => {
   };
   return (
     <div>
-      <p>練習問題2・変数の型指定</p>
+      <p>練習問題3・変数の型指定</p>
       <button onClick={onClickPractice}>実行</button>
     </div>
   );
