@@ -8,6 +8,7 @@ import "./styles.css";
 import { Todo } from "./Todo";
 
 //Todoデータの型指定
+//type で型に名前をつけられる
 type TodoType = {
   userId: number;
   id: number;
@@ -17,7 +18,7 @@ type TodoType = {
 
 export default function App() {
   //stateの型定義
-  //useState<any>でtodosの型を指定できる
+  //useState< >でtodosの型を指定できる
   //配列型で配列の中身がtypeのTodoType
   const [todos, setTodos] = useState<Array<TodoType>>([]);
 
@@ -35,7 +36,11 @@ export default function App() {
     <div className="App">
       <button onClick={onClickFetchData}>データ取得</button>
       {todos.map((todo) => (
-        <Todo title={todo.title} userid={todo.userId} key={todo.id} />
+        <Todo
+          title={todo.title}
+          userId={todo.userId}
+          completed={todo.completed}
+        />
       ))}
     </div>
   );
