@@ -6,15 +6,7 @@ import "./styles.css";
 // import { Practice3 } from "./practices/Practice3";
 // import { Practice4 } from "./practices/Practice4";
 import { Todo } from "./Todo";
-
-//Todoデータの型指定
-//type で型に名前をつけられる
-type TodoType = {
-  userId: number;
-  id: number;
-  title: string;
-  completed: boolean;
-};
+import { TodoType } from "./types/todo";
 
 export default function App() {
   //stateの型定義
@@ -31,7 +23,7 @@ export default function App() {
         setTodos(res.data);
       });
   };
-  console.log(todos);
+
   return (
     <div className="App">
       <button onClick={onClickFetchData}>データ取得</button>
@@ -40,6 +32,7 @@ export default function App() {
           title={todo.title}
           userId={todo.userId}
           completed={todo.completed}
+          key={todo.id}
         />
       ))}
     </div>
