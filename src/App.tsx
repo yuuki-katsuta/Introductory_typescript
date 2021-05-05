@@ -3,14 +3,12 @@ import { useState } from "react";
 import "./styles.css";
 import { Todo } from "./Todo";
 import { TodoType } from "./types/todo";
-import { User } from "./types/user";
-import { Text } from "./Text";
-import { UserProfile } from "./UserProfile";
-
-const user: User = {
-  name: "yuuki",
-  hobbies: ["映画", "ゲーム"]
-};
+import { UserCard } from "./components/UserCard";
+import { useAllUsers } from "./hooks/useAllUsers";
+import { User } from "./types/api/user";
+import { UserProfile } from "./types/UserProfile";
+// import { User } from "./types/user";
+// import { Text } from "./Text";
 
 export default function App() {
   //stateの型定義
@@ -28,10 +26,27 @@ export default function App() {
       });
   };
 
+  const { getUsers, userProfiles, loading, error } = useAllUsers();
+  const onClickFetchUser = () => getUsers();
+
   return (
     <div className="App">
-      <UserProfile user={user} />
-      <Text color="red" fontSize="18px" />
+      <button onClick={onClickFetchUser}>ユーザーデータ取得</button>
+      <br />
+      {error ? (
+        <p>データの取得に失敗したよ〜</p>
+      ) : loading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          {userProfiles.map((user) => (
+            <UserCard user={user} key={user.id} />
+          ))}
+        </>
+      )}
+
+      {/* <UserProfile user={user} /> */}
+      {/* <Text color="red" fontSize="18px" /> */}
       <button onClick={onClickFetchData}>データ取得</button>
       {todos.map((todo) => (
         <Todo
