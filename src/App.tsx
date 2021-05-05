@@ -1,13 +1,16 @@
 import axios from "axios";
 import { useState } from "react";
 import "./styles.css";
-// import { Practice1 } from "./practices/Practice1";
-// import { Practice2 } from "./practices/Practice2";
-// import { Practice3 } from "./practices/Practice3";
-// import { Practice4 } from "./practices/Practice4";
 import { Todo } from "./Todo";
 import { TodoType } from "./types/todo";
+import { User } from "./types/user";
 import { Text } from "./Text";
+import { UserProfile } from "./UserProfile";
+
+const user: User = {
+  name: "yuuki",
+  hobbies: ["映画", "ゲーム"]
+};
 
 export default function App() {
   //stateの型定義
@@ -27,6 +30,7 @@ export default function App() {
 
   return (
     <div className="App">
+      <UserProfile user={user} />
       <Text color="red" fontSize="18px" />
       <button onClick={onClickFetchData}>データ取得</button>
       {todos.map((todo) => (
